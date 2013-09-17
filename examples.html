@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery FileFive 1.0 RC1 Example</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="jquery.filefive-1.0.0-beta.js"></script>
+		<script type="text/javascript">
+			/*
+			 * We wrap our code inside a function passed to jQuery to:
+			 *    1) Mimic behavior of $(document).ready(function() {..});
+			 *       where the page waits until all resources are loaded
+			 *       before executing the code contained within.
+			 *    2) Execute the code immediately, when the pages is
+			 *       loaded through AJAX.
+			 * 
+			 * The reason we don't use $(document).ready() is because
+			 * any code residing in $(document).ready() is not called
+			 * when the page is loaded through AJAX.
+			 * 
+			 * By utilizing $(function() {...}), we are able to execute
+			 * the same code regardless of whether the page is being
+			 * loaded directly, or through an AJAX call.
+			 * 
+			 * This is a good coding practice to follow to maintain easy
+			 * portability of code, and doesn't require any additional
+			 * programming.
+			*/
+			$(function() {
+				// Define the selector used ot grab the file input.
+				var bind_selector = '#thumbnails input.file-input';
+
+				// In the case this page is pulled through an AJAX call,
+				// ".off()" prevents double-binding of the file input.
+				$(document.body).off('change', bind_selector);
+
+				// Bind to the file input, calling the following function when
+				// files are selected.
+				$(document.body).on('change', bind_selector, function(event) {
+					// Instantiate a filefive object, adding HTML5
+					// convenience features to the file input's file
+					// objects.
+					var $filefive = $(this).filefive(); // Alternately: $.filefive(this);
+
+					// Grab the container which will hold information
+					// relating to the files selected by the file input,
+					// removing all existing elements / text from it.
+					var $fileinfo_container = $('#files-container').empty();
+
+					// Iterate over file specified in the file input, adding
+					// useful information to the DOM for each file
+					// encountered.
+					$.each($filefive.files(), function(offset, file) {
+						// Grab general information about the file.
+						var file_size = file.size; // Grab the file's size.
+						var file_name = file.name; // Grab the filename of the file.
+						var mime_type = file.type; // Grab the file's mime type.
+						var media_type = file.media; // Grab the file's media type.
+
+						// Create the container which will hold all
+						// information relating to the file being iterated
+						// over.
+						var $fileinfo_object = $('div').addClass('fileinfo');
+
+						// Add information to the container.
+						$('div').addClass('size').text('File Size: ' + file_size).appendTo($fileinfo_object);
+						$('div').addClass('name').text('File Name: ' + file_name).appendTo($fileinfo_object);
+						$('div').addClass('mime').text('Mime Type: ' + mime_type).appendTo($fileinfo_object);
+						$('div').addClass('media').text('Media Type: ' + media_type).appendTo($fileinfo_object);
+
+						// Add a thumbnail to the container, if available.
+						if(media_type == 'image') {
+							// If the file's media type is an image,
+							// have an <img> object generated and
+							// returned to us linked to the file being
+							// iterated over, which we can subsequently
+							// attach to the DOM for display.
+
+							// If file.image() is called on a non-image,
+							// false (boolean) is returned.
+							var $img = file.image();
+
+							// Wrap the image in it's own div, and
+							// attach that div to the fule container.
+							$('div').addClass('image').append($img).appendTo(fileinfo_object);
+						}
+
+						// Append the file info container to the files
+						// container.
+						$fileinfo_object.appendTo($fileinfo_container);
+					});
+				});
+			});
+		</script>
+
+		<style type="text/css">
+			#thumbnails {
+				border:1px solid #aaa;
+				padding:12px;
+			}
+			#thumbnails img {
+				max-width:140px;
+				max-height:140px;
+				width:auto;
+				height:auto;
+				border:1px solid #ccc;
+			}
+			#license {
+				padding:40px;
+				width:400px;
+				margin:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<b>Select a few files. Preferrable images!
+		<form>
+			<input class="file-input" type="file" name="files" multiple="multiple" />
+		</form>
+		<div id="files-container"></div>
+
+		<div id="license">
+			<a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a>
+			<br />
+			<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">FileFive</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.github.com/JDBurnZ/jquery-filefive" property="cc:attributionName" rel="cc:attributionURL">Joshua D. Burns</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
+		</div>
+	</body>
+</html>
