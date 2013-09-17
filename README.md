@@ -31,35 +31,44 @@ display within the HTML DOM.
 --------------------------------------------------------------------------------  
 
 Grab the file input we'll be interfacing with:
+
 	var $file_input = $('#file-input');
 
 Detect when files have been selected:
+
 	$(document.body).on('change', $file_input, function(event) {
 		var $file_input = $(this);
 		// code here...
 	});
 
 Grab the files selected by the file input:
+
 	var $files = $file_input.files();
 
 Iterate over the files selected by the file input:
+
 	$.each($files, function(offset, file) {
 		// code here...
 	});
 
 Grab the size of a file:
+
 	var size = file.size;
 
 Grab the filename of a file:
+
 	var filename = file.name;
 
 Grab the mime type of a file:
+
 	var mimetype = file.type;
 
 Grab the media type of a file:
+
 	var mediatype = file.media;
 
 Generate an <img> element, for a file, attaching it to the <body> of the DOM.
+
 	var $img = file.image();
 	$img.appendTo('body');
 
