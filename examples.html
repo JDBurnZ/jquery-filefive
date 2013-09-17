@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>jQuery FileFive 1.0 RC1 Example</title>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script src="jquery.filefive-1.0.0-beta.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="jquery.filefive-0.1.0-rc1.js"></script>
 		<script type="text/javascript">
 			/*
 			 * We wrap our code inside a function passed to jQuery to:
@@ -27,7 +27,7 @@
 			*/
 			$(function() {
 				// Define the selector used ot grab the file input.
-				var bind_selector = '#thumbnails input.file-input';
+				var bind_selector = '#file-input';
 
 				// In the case this page is pulled through an AJAX call,
 				// ".off()" prevents double-binding of the file input.
@@ -39,7 +39,7 @@
 					// Instantiate a filefive object, adding HTML5
 					// convenience features to the file input's file
 					// objects.
-					var $filefive = $(this).filefive(); // Alternately: $.filefive(this);
+					var $filefive = $.filefive(this);//$(this).filefive(); // Alternately: $.filefive(this);
 
 					// Grab the container which will hold information
 					// relating to the files selected by the file input,
@@ -58,14 +58,14 @@
 
 						// Create the container which will hold all
 						// information relating to the file being iterated
-						// over.
-						var $fileinfo_object = $('div').addClass('fileinfo');
+						// over, and append it to the  file info container.
+						var $fileinfo_object = $('<div>').addClass('fileinfo').appendTo($fileinfo_container);
 
 						// Add information to the container.
-						$('div').addClass('size').text('File Size: ' + file_size).appendTo($fileinfo_object);
-						$('div').addClass('name').text('File Name: ' + file_name).appendTo($fileinfo_object);
-						$('div').addClass('mime').text('Mime Type: ' + mime_type).appendTo($fileinfo_object);
-						$('div').addClass('media').text('Media Type: ' + media_type).appendTo($fileinfo_object);
+						$('<div>').addClass('size').text('File Size: ' + file_size + ' bytes').appendTo($fileinfo_object);
+						$('<div>').addClass('name').text('File Name: ' + file_name).appendTo($fileinfo_object);
+						$('<div>').addClass('mime').text('Mime Type: ' + mime_type).appendTo($fileinfo_object);
+						$('<div>').addClass('media').text('Media Type: ' + media_type).appendTo($fileinfo_object);
 
 						// Add a thumbnail to the container, if available.
 						if(media_type == 'image') {
@@ -81,28 +81,28 @@
 
 							// Wrap the image in it's own div, and
 							// attach that div to the fule container.
-							$('div').addClass('image').append($img).appendTo(fileinfo_object);
+							$('<div>').addClass('image').append($img).appendTo($fileinfo_object);
 						}
-
-						// Append the file info container to the files
-						// container.
-						$fileinfo_object.appendTo($fileinfo_container);
 					});
 				});
 			});
 		</script>
 
 		<style type="text/css">
-			#thumbnails {
-				border:1px solid #aaa;
-				padding:12px;
+			#files-container .fileinfo {
+				float:left;
+				padding:10px;
+				margin:10px;
+				border:1px solid #f00;
 			}
-			#thumbnails img {
+			#files-container .fileinfo img {
 				max-width:140px;
 				max-height:140px;
 				width:auto;
 				height:auto;
-				border:1px solid #ccc;
+				border:1px solid #00f;
+				display:block;
+				margin:auto;
 			}
 			#license {
 				padding:40px;
@@ -112,11 +112,11 @@
 		</style>
 	</head>
 	<body>
-		<b>Select a few files. Preferrable images!
+		<b>Select a few files. Preferrable images!</b>
 		<form>
-			<input class="file-input" type="file" name="files" multiple="multiple" />
+			<input id="file-input" type="file" name="files" multiple="multiple" />
+			<div id="files-container"></div>
 		</form>
-		<div id="files-container"></div>
 
 		<div id="license">
 			<a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a>
