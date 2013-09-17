@@ -67,7 +67,7 @@ Grab the media type of a file:
 
 	var mediatype = file.media;
 
-Generate an <img> element, for a file, attaching it to the <body> of the DOM.
+Generate an "img" element, for a file, attaching it to the "body" of the DOM.
 
 	var $img = file.image();
 	$img.appendTo('body');
