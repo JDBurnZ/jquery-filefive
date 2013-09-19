@@ -1,64 +1,57 @@
 FileFive
---------------------------------------------------------------------------------   
-Version 0.1.0 Development
+========
 
-================================================================================
- LICENSE    
---------------------------------------------------------------------------------                                
-FileFive by Joshua D. Burns is licensed under the Creative Commons Attribution
-3.0 Unported License. To view a copy of this license, please visit:
-http://creativecommons.org/licenses/by/3.0/
+Current Version: 0.1.0 Development
 
-================================================================================
-
- SOURCE CODE   
---------------------------------------------------------------------------------                                 
-FileFive source code, documentation and examples are available on GitHub at:
-https://www.github.com/JDBurnZ/jquery-filefive
-
-================================================================================
-
- DESCRIPTION
---------------------------------------------------------------------------------  
-   
 FileFive is a jQuery plug-in for easily and efficiently dealing with HTML 5 file
 objects from reading file sizes and file names, to generating thumbnails for
 display within the HTML DOM.
 
-================================================================================
+Please note: FileFive is under active development so as features are added and
+scopes are more clearly defined, methods and calls may be subject to change.
+Therefore, future versions under the development branch may not be sutable as
+drop-in replacements to older versions.
 
- COMPATIBILITY
---------------------------------------------------------------------------------  
-   
-Mozilla Firefox
-* 23.1.0: 100%
-* 24.0: 100%
+License
+-------
+FileFive by Joshua D. Burns is licensed under the Creative Commons Attribution
+3.0 Unported License. To view a copy of this license, please visit:
+http://creativecommons.org/licenses/by/3.0/
 
-Google Chrome
-* 29.0.1547.66 m: 100%
+Source Code
+-----------
+FileFive source code, documentation and examples are available on GitHub at:
+https://www.github.com/JDBurnZ/jquery-filefive
 
-Microsoft Internet Explorer
-* 10.0.7: 100%
+Compatibility
+-------------
+100%
+* Mozilla Firefox 23.1.0
+* Mozilla Firefox 24.0
+* Google Chrome 29.0.1547.66 m
+* Microsoft Internet Explorer 10.0.7
 
-================================================================================
+This library has not yet been tested in Safari, Opera, any mobile operating
+system/mobile browser, or any previous versions of Internet Explorer.
 
- KNOWN ISSUES
---------------------------------------------------------------------------------  
+Known Issues
+------------
 
-* Has not been extensively tested in an array of browsers and versions.
-* There is currently no fallback for non-HTML5 browsers.
+* Needs to be tested in a larger array of browsers.
+* Currently no fallback for non-HTML 5 browsers.
 
-================================================================================
+To Do
+-----
 
- TO DO
---------------------------------------------------------------------------------  
+Features to be included in future releases.
+* Video object support
+* Sound object support
+* Drag'n'drop files from file system
+* Drag'n'drop web resources (images, urls, text, etc)
+* Easy AJAX file uploading
 
-* Add HTML5 Video and Sound support.
-
-================================================================================
-
- QUICK-REFERENCE
---------------------------------------------------------------------------------  
+Quick Reference
+---------------
 
 Grab the file input we'll be interfacing with:
 
