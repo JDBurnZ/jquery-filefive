@@ -9,12 +9,10 @@
  */
 
 (function($) {
-	// Define the globl function which is callable via $.filefive(selector).
+	// Define the global function which is callable via $.filefive(selector).
 	$.fn.filefive = function() {
-		// Must return using each() to maintain jQuery object chaining.
-		return this.each(function() {
-			$.filefive(this);
-		});
+		// Add the files method to the jQuery instance
+		return $.filefive(this);
 	}
 
 	$.filefive = function(selector) {
