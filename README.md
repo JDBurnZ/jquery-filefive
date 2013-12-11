@@ -14,7 +14,7 @@ drop-in replacements to older versions.
 
 License
 -------
-Please reference LICENSE file for licensing and copyright information
+Please refer to the LICENSE file for licensing and copyright information.
 
 Source Code
 -----------
